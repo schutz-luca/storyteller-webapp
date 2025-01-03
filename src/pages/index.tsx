@@ -6,6 +6,8 @@ import { useSharedMaps } from "../lib/fluid-framework/useSharedMaps";
 import { useSharedStory } from "../lib/fluid-framework/useSharedStory";
 import { FillableAnswerGroup, Question } from "../types";
 import { unflatObject } from "../utils/unflatObject";
+import { FaShareFromSquare } from "react-icons/fa6";
+import './styles.scss';
 
 const questions: Question[] = [
     { id: "goal", value: "Qual o objetivo da narrativa?" },
@@ -20,7 +22,7 @@ const questions: Question[] = [
 ];
 
 export const MainPage = () => {
-    const { storyMap } = useSharedMaps();
+    const { storyMap, containerId } = useSharedMaps();
     const { sharedStory, updateSharedStory } = useSharedStory(storyMap);
 
     const [answers, setAnswers] = useState<FillableAnswerGroup>();
@@ -59,6 +61,12 @@ export const MainPage = () => {
         }
     };
 
+    const shareSession = () => {
+        const shareUrl = `${window.location.origin}/?session=${containerId}`
+        navigator.clipboard.writeText(shareUrl);
+        alert('Link de compartilhamento foi copiado')
+    }
+
     // Sync story and answers to shared value
     useEffect(() => {
         updateSharedStory({ story });
@@ -71,7 +79,8 @@ export const MainPage = () => {
     if (sharedStory.loading) return <h1>{sharedStory.loading}</h1>
 
     return (
-        <div>
+        <div className="main-page">
+            <div className="share-button" onClick={shareSession}><FaShareFromSquare /></div>
             {!sharedStory.story ?
                 // Questions
                 <>
