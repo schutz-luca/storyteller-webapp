@@ -68,3 +68,9 @@ or
 ```bash
 yarn dev
 ```
+
+### **7. To run it properly you will also have to run the [Storyteller API](https://github.com/schutz-luca/storyteller-api)**
+
+## 📄 License
+
+The MIT License (MIT)
