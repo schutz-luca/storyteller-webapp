@@ -10,7 +10,7 @@ export const useSharedStory = (storyMap?: SharedMap) => {
         currentAnswer: '',
         currentStep: 0,
         story: '',
-        loading: '', 
+        loading: '',
     });
 
     const updateSharedStory = (value: any) => {

@@ -14,10 +14,10 @@ const questions: Question[] = [
     { id: "targetAudience.profile", value: "Qual é o perfil cultural, social e/ou profissional do público-alvo da sua narrativa?" },
     { id: "targetAudience.feelings", value: "Como você quer que o seu público-alvo se sinta quando consumir a narrativa?" },
     { id: "story.about", value: "Sobre o que ou quem é a sua narrativa" },
-    { id: "story.climax", value: "Há um clímax/ponto-alto na narrativa?" },
-    { id: "story.moral", value: "Existe alguma lição de moral ou reflexão que final que sua narrativa queira causar?" },
+    { id: "story.climax", value: "Há um clímax/ponto-alto na narrativa?", nullable: true },
+    { id: "story.moral", value: "Existe alguma lição de moral ou reflexão que final que sua narrativa queira causar?", nullable: true },
     { id: "structure.soundsLike", value: "Como você quer que a narrativa soe?" },
-    { id: "structure.creativeRef", value: "Existe alguma referência criativa para sua narrativa" },
+    { id: "structure.creativeRef", value: "Existe alguma referência criativa para sua narrativa?", nullable: true },
     { id: "structure.density", value: "Qual a densidade da leitura da narrativa?" },
 ];
 
@@ -94,14 +94,17 @@ export const MainPage = () => {
                 </>
                 :
                 // Story
-                <>
-                    <div>
+                <div className="flex-center">
+                    <div className="story-container">
                         <MarkdownBox>
                             {sharedStory.story}
                         </MarkdownBox>
                     </div>
-                    <button onClick={() => submitAnswers(sharedStory.answers)}>Refazer</button>
-                </>
+                    <div className="buttons-container">
+                        <button onClick={() => submitAnswers(sharedStory.answers)}>Criar nova história</button>
+                        <button onClick={() => submitAnswers(sharedStory.answers)}>Refazer</button>
+                    </div>
+                </div>
             }
         </div>
     );

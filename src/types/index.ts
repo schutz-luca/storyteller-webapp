@@ -2,6 +2,7 @@ export interface Question {
     id: string;
     value: string;
     answer?: string;
+    nullable?: boolean;
 }
 
 export interface FillableAnswerGroup {

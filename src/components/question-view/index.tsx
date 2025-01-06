@@ -1,10 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
-import './styles.css';
+import './styles.scss';
 import { QuestionViewProps } from "./types";
+import { FormEvent } from "react";
 
 export const QuestionView = ({ question, onSubmit, answer, setAnswer }: QuestionViewProps) => {
 
-    const handleSubmit = () => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        if (!answer && !question.nullable) {
+            alert('Resposta vazia, por favor preencha o campo');
+            return;
+        }
+
         onSubmit({ ...question, answer: answer.trim() });
     };
 
@@ -17,17 +25,23 @@ export const QuestionView = ({ question, onSubmit, answer, setAnswer }: Question
                 exit={{ opacity: 0, y: -100 }}
                 transition={{ duration: 0.5 }}
             >
-                <div className="question">
-                    <p>{question.value}</p>
+                <form className="question" onSubmit={handleSubmit}>
+                    <p>{question.value} {!question.nullable && <b>*</b>}</p>
                     <input
                         type="text"
                         value={answer}
                         id={question.id}
                         onChange={(e) => setAnswer(e.target.value)}
                         placeholder="Digite sua resposta"
+                        autoFocus={true}
                     />
-                    <button onClick={handleSubmit}>Próximo</button>
-                </div>
+                    <div className="buttons-container">
+                        {question.nullable &&
+                            <button>Não responder</button>
+                        }
+                        <button>Próximo</button>
+                    </div>
+                </form>
             </motion.div>
         </AnimatePresence>
     );
