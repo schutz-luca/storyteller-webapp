@@ -1,0 +1,29 @@
+.main-page {
+    height: 100%;
+
+    .share-button {
+        cursor: pointer;
+        margin-bottom: 10px;
+        font-size: 25px;
+    }
+
+    .story-container {
+        background: #131115;
+        padding: 1rem;
+        border-radius: 1rem;
+        margin: 1rem 0;
+        width: 90%;
+        font-family: monospace;
+        font-size: 1rem;
+
+        & > * {
+            line-break: normal;
+            max-width: 100%;
+            white-space: break-spaces;
+        }
+    }
+
+    .buttons-container{
+        margin-bottom: 10px;
+    }
+}
