@@ -2,6 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import './styles.scss';
 import { QuestionViewProps } from "./types";
 import { FormEvent } from "react";
+import { Carousel } from "../carousel";
+import { IoPlaySkipForward, IoSparkles } from "react-icons/io5";
+import { FaChevronRight } from "react-icons/fa6";
 
 export const QuestionView = ({ question, onSubmit, answer, setAnswer }: QuestionViewProps) => {
 
@@ -26,22 +29,30 @@ export const QuestionView = ({ question, onSubmit, answer, setAnswer }: Question
                 transition={{ duration: 0.5 }}
             >
                 <form className="question" onSubmit={handleSubmit}>
-                    <p>{question.value} {!question.nullable && <b>*</b>}</p>
-                    <input
-                        type="text"
+                    <h2>{question.value} {!question.nullable && <b>*</b>}</h2>
+                    <textarea
                         value={answer}
                         id={question.id}
                         onChange={(e) => setAnswer(e.target.value)}
                         placeholder="Digite sua resposta"
                         autoFocus={true}
                     />
+                    <div className="tips-container">
+                        <p>
+                            Aqui estão alguns exemplos de repostas <IoSparkles />
+                        </p>
+                        <Carousel
+                            items={question.tips.map(tip => <span className="tip">{tip}</span>)}
+                        />
+                    </div>
                     <div className="buttons-container">
                         {question.nullable &&
-                            <button>Não responder</button>
+                            <button>Não responder <IoPlaySkipForward /></button>
                         }
-                        <button>Próximo</button>
+                        <button>Próximo <FaChevronRight /></button>
                     </div>
                 </form>
+
             </motion.div>
         </AnimatePresence>
     );

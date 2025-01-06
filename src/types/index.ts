@@ -3,6 +3,7 @@ export interface Question {
     value: string;
     answer?: string;
     nullable?: boolean;
+    tips: string[];
 }
 
 export interface FillableAnswerGroup {

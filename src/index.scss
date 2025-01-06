@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #252125;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -30,6 +30,10 @@ body {
   min-height: 100vh;
 }
 
+body {
+  font-family: "Red Hat Display", sans-serif;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -40,14 +44,20 @@ button {
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 600;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #0a0a0a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  color: #ffffffc5;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: #0e90a7;
+  color: #ffffff;
 }
 button:focus,
 button:focus-visible {

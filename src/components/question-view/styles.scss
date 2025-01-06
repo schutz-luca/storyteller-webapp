@@ -5,10 +5,52 @@
     align-items: center;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    background: #ffffff08;
-
+    background: #13111588;
+    width: 700px;
     input {
         width: 100%;
+    }
+
+    h2 {
+        max-width: 550px;
+    }
+
+    textarea {
+        border: 1px transparent solid;
+        padding: 10px 20px;
+        width: 80%;
+        border-radius: 8px;
+        background: #3a3a3a93;
+        transition: border-color 0.3s ease;
+        outline: none;
+        font-size: 16px;
+
+        &:focus {
+            outline: none;
+            border: 1px #0e90a7 solid;
+        }
+    }
+}
+
+.tips-container {
+    display: flex;
+    flex-direction: column;
+
+    p {
+        font-size: 15px;
+        opacity: 0.5;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        svg {
+            font-size: 20px;
+        }
+    }
+
+    .tip {
+        font-family: monospace;
+        font-size: 20px;
     }
 }
