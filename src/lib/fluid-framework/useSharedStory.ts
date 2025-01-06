@@ -2,15 +2,24 @@ import { SharedMap } from "fluid-framework";
 import { useCallback, useEffect, useState } from "react";
 import { isEqual } from "lodash"
 import { SharedStory } from "./types";
+import { getSearchParams } from "../../utils/getSearchParams";
 
-const storyKey = '0'
+const storyKey = '0';
+
+export const sharedStoryEmptyState: SharedStory = {
+    currentAnswer: '',
+    currentStep: 0,
+    story: '',
+    answers: undefined,
+    loading: ''
+}
 
 export const useSharedStory = (storyMap?: SharedMap) => {
+    const sessionParam = getSearchParams().get('session') || '';
+
     const [sharedStory, setSharedStory] = useState<SharedStory>({
-        currentAnswer: '',
-        currentStep: 0,
-        story: '',
-        loading: '',
+        ...sharedStoryEmptyState,
+        loading: sessionParam ? 'Conectando à sessão...' : '',
     });
 
     const updateSharedStory = (value: any) => {

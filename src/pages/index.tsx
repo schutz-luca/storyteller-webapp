@@ -3,14 +3,13 @@ import MarkdownBox from 'react-markdown';
 import { QuestionView } from "../components/question-view";
 import { Stepper } from "../components/stepper";
 import { useSharedMaps } from "../lib/fluid-framework/useSharedMaps";
-import { useSharedStory } from "../lib/fluid-framework/useSharedStory";
+import { sharedStoryEmptyState, useSharedStory } from "../lib/fluid-framework/useSharedStory";
 import { FillableAnswerGroup, Question } from "../types";
 import { unflatObject } from "../utils/unflatObject";
-import { FaShareFromSquare, FaSquarePlus } from "react-icons/fa6";
+import { FaShareFromSquare } from "react-icons/fa6";
 import './styles.scss';
-import { StorytellerBanner } from "../components/storyteller";
-import { IoIosCreate } from "react-icons/io";
 import { FaPlus, FaSync } from "react-icons/fa";
+import { Loading } from "../components/loading";
 
 const questions: Question[] = [
     {
@@ -96,6 +95,8 @@ export const MainPage = () => {
     const [answers, setAnswers] = useState<FillableAnswerGroup>();
     const [story, setStory] = useState('');
 
+    const reset = () => updateSharedStory(sharedStoryEmptyState);
+
     const setAnswer = (value: string) => updateSharedStory({ currentAnswer: value });
 
     const handleNext = (question: Question) => {
@@ -144,7 +145,7 @@ export const MainPage = () => {
         updateSharedStory({ answers });
     }, [answers])
 
-    if (sharedStory.loading) return <h1>{sharedStory.loading}</h1>
+    if (sharedStory.loading) return <Loading text={sharedStory.loading} />
 
     return (
         <div className="main-page">
@@ -169,7 +170,7 @@ export const MainPage = () => {
                         </MarkdownBox>
                     </div>
                     <div className="buttons-container">
-                        <button onClick={() => submitAnswers(sharedStory.answers)}>Criar outra história <FaPlus /></button>
+                        <button onClick={reset}>Criar outra história <FaPlus /></button>
                         <button onClick={() => submitAnswers(sharedStory.answers)}>Recriar <FaSync /></button>
                     </div>
                 </div>

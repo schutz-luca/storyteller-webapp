@@ -5,7 +5,9 @@ import { MainPage } from "./pages";
 const App = () => (
   <div className="app-container">
     <StorytellerBanner />
-    <MainPage />
+    <div className="content-container">
+      <MainPage />
+    </div>
   </div>
 );
 
