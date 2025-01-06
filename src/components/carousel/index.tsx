@@ -13,19 +13,15 @@ export const Carousel = ({ items, timeout = 3000 }) => {
         return () => clearInterval(interval);
     }, [items.length, timeout]);
 
-    const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-    };
+    // const handleNext = () => {
+    //     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+    // };
 
-    const handlePrev = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? items.length - 1 : prevIndex - 1
-        );
-    };
-
-    useEffect(() => {
-        console.log(currentIndex);
-    }, [currentIndex])
+    // const handlePrev = () => {
+    //     setCurrentIndex((prevIndex) =>
+    //         prevIndex === 0 ? items.length - 1 : prevIndex - 1
+    //     );
+    // };
 
     return (
         <div className="carousel-container">

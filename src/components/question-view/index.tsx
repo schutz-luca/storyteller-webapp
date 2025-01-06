@@ -1,12 +1,20 @@
 import { motion, AnimatePresence } from "framer-motion";
 import './styles.scss';
 import { QuestionViewProps } from "./types";
-import { FormEvent } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Carousel } from "../carousel";
 import { IoPlaySkipForward, IoSparkles } from "react-icons/io5";
 import { FaChevronRight } from "react-icons/fa6";
 
 export const QuestionView = ({ question, onSubmit, answer, setAnswer }: QuestionViewProps) => {
+    const [localAnswer, setLocalAnser] = useState('');
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault(); // Prevents a new line in the textarea
+            handleSubmit(e);
+        }
+    };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -18,6 +26,11 @@ export const QuestionView = ({ question, onSubmit, answer, setAnswer }: Question
 
         onSubmit({ ...question, answer: answer.trim() });
     };
+
+
+    useEffect(() => {
+        setAnswer(localAnswer)
+    }, [localAnswer]);
 
     return (
         <AnimatePresence mode="wait">
@@ -33,9 +46,10 @@ export const QuestionView = ({ question, onSubmit, answer, setAnswer }: Question
                     <textarea
                         value={answer}
                         id={question.id}
-                        onChange={(e) => setAnswer(e.target.value)}
+                        onChange={(e) => setLocalAnser(e.target.value)}
                         placeholder="Digite sua resposta"
                         autoFocus={true}
+                        onKeyDown={handleKeyDown}
                     />
                     <div className="tips-container">
                         <p>
