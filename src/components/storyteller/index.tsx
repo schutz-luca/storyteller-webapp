@@ -3,6 +3,9 @@ import { FaFeatherAlt } from "react-icons/fa";
 
 export const StorytellerBanner = () => (
     <div className="banner">
-        Storyteller <FaFeatherAlt />
+        <div className='logo'>
+            Storyteller <FaFeatherAlt />
+            <span>BETA</span>
+        </div>
     </div>
 )

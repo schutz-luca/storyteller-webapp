@@ -86,6 +86,12 @@ export const MainPage = () => {
                         answer={sharedStory?.currentAnswer}
                         setAnswer={setAnswer}
                     />
+                    {/* <div className='about'>
+                        <h3>Sobre o Storyteller </h3>
+                        O Storyteller é uma ferramenta de suporte criativo que utiliza IA para gerar narrativas de quaisquer gêneros. <br />
+                        A ideia é ser um ambiente genérico que rápido de ser usado, acelerando seus processos de criação. <br /><br />
+                        Atualmente o produto se encontra na versão <b>BETA</b>, futuramente novas funcionalidades e correções virão...
+                    </div> */}
                 </>
                 :
                 // Story

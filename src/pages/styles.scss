@@ -10,4 +10,15 @@
     .buttons-container{
         margin-bottom: 10px;
     }
+
+    .about {
+        opacity: 0.2;
+        transition: opacity 0.3s ease-out;
+        z-index: -1;
+        margin-top: 40px;
+
+        &:hover{
+            opacity: 1;
+        }
+    }
 }
