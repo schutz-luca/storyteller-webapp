@@ -14,7 +14,7 @@ const client = new AzureClient({
 });
 
 const containerSchema = {
-    initialObjects: { storyMap: SharedMap }
+    initialObjects: { storyMap: SharedMap, loadingMap: SharedMap }
 }
 
 export const useSharedMaps = () => {
@@ -46,5 +46,9 @@ export const useSharedMaps = () => {
         getSharedMaps();
     }, []);
 
-    return { storyMap: container?.initialObjects.storyMap as SharedMap | undefined, containerId }
+    return {
+        storyMap: container?.initialObjects.storyMap as SharedMap | undefined,
+        loadingMap: container?.initialObjects.loadingMap as SharedMap | undefined,
+        containerId
+    }
 }

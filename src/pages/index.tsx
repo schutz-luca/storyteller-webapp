@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ReactMarkdown from 'react-markdown';
 import { QuestionView } from "../components/question-view";
 import { Stepper } from "../components/stepper";
 import { useSharedMaps } from "../lib/fluid-framework/useSharedMaps";
@@ -8,37 +7,40 @@ import { FillableAnswerGroup, Question } from "../types";
 import { unflatObject } from "../utils/unflatObject";
 import { FaShareFromSquare } from "react-icons/fa6";
 import './styles.scss';
-import { FaPlus, FaSync } from "react-icons/fa";
 import { Loading } from "../components/loading";
 import { questions } from "../constants/questions";
-import remarkGfm from "remark-gfm";
-import rehypeSanitize from "rehype-sanitize";
+import { StoryView } from "../components/story-view";
+import { formatToMd } from "../utils/formatToMd";
+import { useSharedLoading } from "../lib/fluid-framework/useSharedLoading";
 
 export const MainPage = () => {
-    const { storyMap, containerId } = useSharedMaps();
+    const { storyMap, loadingMap, containerId } = useSharedMaps();
     const { sharedStory, updateSharedStory } = useSharedStory(storyMap);
+    const { sharedLoading, updateSharedLoading } = useSharedLoading(loadingMap);
 
     const [answers, setAnswers] = useState<FillableAnswerGroup>();
-    const [story, setStory] = useState('');
 
     const reset = () => updateSharedStory(sharedStoryEmptyState);
 
     const setAnswer = (value: string) => updateSharedStory({ currentAnswer: value });
 
     const handleNext = (question: Question) => {
-        const currentAnswers = { ...sharedStory.answers, [question.id]: question.answer };
+        const currentAnswers = { ...sharedStory?.answers, [question.id]: question.answer };
         setAnswers(currentAnswers);
 
-        if (sharedStory.currentStep < questions.length - 1)
+        if (!!sharedStory && sharedStory.currentStep < questions.length - 1)
             updateSharedStory({ currentStep: sharedStory.currentStep + 1, currentAnswer: '' });
         else
             submitAnswers(currentAnswers);
     };
 
+    const recreate = () => {
+        submitAnswers(sharedStory?.answers)
+    }
 
     const submitAnswers = async (answers?: FillableAnswerGroup) => {
         try {
-            updateSharedStory({ loading: 'Criando sua história...' });
+            updateSharedLoading('Criando sua história...');
 
             const response = await fetch(`${import.meta.env.VITE_API_URL}/create-story`, {
                 method: "POST",
@@ -46,13 +48,15 @@ export const MainPage = () => {
                 body: JSON.stringify(unflatObject(answers)),
             });
             const data = await response.json();
-            setStory(data.content);
+            updateSharedStory({ story: data.content });
+            updateSharedLoading('');
         }
         catch (error) {
             console.error('Error sending answers:', error);
+            updateSharedLoading('');
         }
         finally {
-            updateSharedStory({ loading: '' });
+
         }
     };
 
@@ -62,20 +66,12 @@ export const MainPage = () => {
         alert('Link de compartilhamento foi copiado')
     }
 
-    // Sync story and answers to shared value
-    useEffect(() => {
-        updateSharedStory({ story });
-    }, [story])
-
     useEffect(() => {
         updateSharedStory({ answers });
     }, [answers])
 
-    const markdownString = `
-    ${sharedStory.story}
-    `.split('```markdown')[1];
-
-    if (sharedStory.loading) return <Loading text={sharedStory.loading} />
+    if (sharedLoading) return <Loading text={sharedLoading} />
+    if (!sharedStory) return <Loading text={'Conectando à sessão...'} />
 
     return (
         <div className="main-page">
@@ -83,30 +79,17 @@ export const MainPage = () => {
             {!sharedStory.story ?
                 // Questions
                 <>
-                    <Stepper currentStep={sharedStory.currentStep} totalSteps={questions.length} />
+                    <Stepper currentStep={sharedStory?.currentStep} totalSteps={questions.length} />
                     <QuestionView
-                        question={questions[sharedStory.currentStep]}
+                        question={questions[sharedStory?.currentStep]}
                         onSubmit={handleNext}
-                        answer={sharedStory.currentAnswer}
+                        answer={sharedStory?.currentAnswer}
                         setAnswer={setAnswer}
                     />
                 </>
                 :
                 // Story
-                <div className="flex-center">
-                    <div className="story-container">
-                        <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            rehypePlugins={[rehypeSanitize]}
-                        >
-                            {markdownString}
-                        </ReactMarkdown>
-                    </div>
-                    <div className="buttons-container">
-                        <button onClick={reset}>Criar outra história <FaPlus /></button>
-                        <button onClick={() => submitAnswers(sharedStory.answers)}>Recriar <FaSync /></button>
-                    </div>
-                </div>
+                <StoryView story={formatToMd(sharedStory?.story)} recreate={recreate} reset={reset} />
             }
         </div>
     );

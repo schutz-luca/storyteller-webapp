@@ -27,7 +27,6 @@ export const QuestionView = ({ question, onSubmit, answer, setAnswer }: Question
         onSubmit({ ...question, answer: answer.trim() });
     };
 
-
     useEffect(() => {
         setAnswer(localAnswer)
     }, [localAnswer]);

@@ -4,27 +4,23 @@ import { isEqual } from "lodash"
 import { SharedStory } from "./types";
 import { getSearchParams } from "../../utils/getSearchParams";
 
-const storyKey = '0';
+const storyKey = 'story';
 
 export const sharedStoryEmptyState: SharedStory = {
     currentAnswer: '',
     currentStep: 0,
     story: '',
-    answers: undefined,
-    loading: ''
 }
 
 export const useSharedStory = (storyMap?: SharedMap) => {
     const sessionParam = getSearchParams().get('session') || '';
 
-    const [sharedStory, setSharedStory] = useState<SharedStory>({
-        ...sharedStoryEmptyState,
-        loading: sessionParam ? 'Conectando à sessão...' : '',
-    });
+    const [sharedStory, setSharedStory] = useState<SharedStory>();
+    const [initialized, setInitialized] = useState(false);
 
     const updateSharedStory = (value: any) => {
-        storyMap?.set(storyKey, { ...sharedStory, ...value });
-        setSharedStory({ ...sharedStory, ...value });
+        const joinedValue = { ...sharedStory, ...value };
+        storyMap?.set(storyKey, joinedValue);
     }
 
     const refresh = useCallback(() => {
@@ -36,15 +32,22 @@ export const useSharedStory = (storyMap?: SharedMap) => {
     }, [storyMap, sharedStory]);
 
     useEffect(() => {
-        if (storyMap && !storyMap.listenerCount('valueChanged')) {
+        if (!initialized && storyMap && !storyMap.listenerCount('valueChanged')) {
+            if (!initialized) setInitialized(true);
             storyMap.on('valueChanged', refresh);
             refresh();
         }
     }, [storyMap]);
 
     useEffect(() => {
+        if (initialized && !sessionParam) {
+            updateSharedStory(sharedStoryEmptyState);
+        }
+    }, [initialized])
+
+    useEffect(() => {
         console.log('[Story]', sharedStory);
-    }, [sharedStory.answers])
+    }, [sharedStory])
 
     return { sharedStory, updateSharedStory }
 }
