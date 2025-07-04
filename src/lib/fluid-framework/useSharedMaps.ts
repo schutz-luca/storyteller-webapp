@@ -20,16 +20,19 @@ const containerSchema = {
 export const useSharedMaps = () => {
     const [container, setContainer] = useState<IFluidContainer>();
     const [containerId, setContainerId] = useState('');
+    const [isNewSession, setIsNewSession] = useState(false);
 
     const getSharedMaps = async () => {
         try {
             let containerId = getSearchParams().get('session') || '';
             let container: IFluidContainer;
             if (containerId) {
+                setIsNewSession(false);
                 ({ container } = await client.getContainer(containerId, containerSchema));
                 console.log(`[Fluid] Connected to container ${containerId}`);
             }
             else {
+                setIsNewSession(true);
                 ({ container } = await client.createContainer(containerSchema));
                 containerId = await container.attach();
                 console.log(`[Fluid] Container with id ${containerId} was created`);
@@ -49,6 +52,8 @@ export const useSharedMaps = () => {
     return {
         storyMap: container?.initialObjects.storyMap as SharedMap | undefined,
         loadingMap: container?.initialObjects.loadingMap as SharedMap | undefined,
-        containerId
+        containerId,
+        isNewSession,
+        setIsNewSession
     }
 }

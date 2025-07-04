@@ -1,20 +1,19 @@
 import { useState, useEffect } from "react";
-import { QuestionView } from "../components/question-view";
-import { Stepper } from "../components/stepper";
-import { useSharedMaps } from "../lib/fluid-framework/useSharedMaps";
-import { sharedStoryEmptyState, useSharedStory } from "../lib/fluid-framework/useSharedStory";
-import { FillableAnswerGroup, Question } from "../types";
-import { unflatObject } from "../utils/unflatObject";
+import { QuestionView } from "../../components/question-view";
+import { Stepper } from "../../components/stepper";
+import { sharedStoryEmptyState, useSharedStory } from "../../lib/fluid-framework/useSharedStory";
+import { FillableAnswerGroup, Question } from "../../types";
+import { unflatObject } from "../../utils/unflatObject";
 import { FaShareFromSquare } from "react-icons/fa6";
 import './styles.scss';
-import { Loading } from "../components/loading";
-import { questions } from "../constants/questions";
-import { StoryView } from "../components/story-view";
-import { formatToMd } from "../utils/formatToMd";
-import { useSharedLoading } from "../lib/fluid-framework/useSharedLoading";
+import { Loading } from "../../components/loading";
+import { questions } from "../../constants/questions";
+import { StoryView } from "../../components/story-view";
+import { formatToMd } from "../../utils/formatToMd";
+import { useSharedLoading } from "../../lib/fluid-framework/useSharedLoading";
+import { SharedMap } from "fluid-framework";
 
-export const MainPage = () => {
-    const { storyMap, loadingMap, containerId } = useSharedMaps();
+export const MainPage = ({ storyMap, loadingMap, containerId }: { storyMap?: SharedMap; loadingMap?: SharedMap; containerId: string }) => {
     const { sharedStory, updateSharedStory } = useSharedStory(storyMap);
     const { sharedLoading, updateSharedLoading } = useSharedLoading(loadingMap);
 
@@ -71,7 +70,9 @@ export const MainPage = () => {
     }, [answers])
 
     if (sharedLoading) return <Loading text={sharedLoading} />
-    if (!sharedStory) return <Loading text={'Conectando à sessão...'} />
+    if (sharedStory?.currentStep === undefined) return <Loading text={'Conectando à sessão...'} />
+
+    console.log(sharedStory)
 
     return (
         <div className="main-page">
@@ -86,12 +87,6 @@ export const MainPage = () => {
                         answer={sharedStory?.currentAnswer}
                         setAnswer={setAnswer}
                     />
-                    {/* <div className='about'>
-                        <h3>Sobre o Storyteller </h3>
-                        O Storyteller é uma ferramenta de suporte criativo que utiliza IA para gerar narrativas de quaisquer gêneros. <br />
-                        A ideia é ser um ambiente genérico que rápido de ser usado, acelerando seus processos de criação. <br /><br />
-                        Atualmente o produto se encontra na versão <b>BETA</b>, futuramente novas funcionalidades e correções virão...
-                    </div> */}
                 </>
                 :
                 // Story
