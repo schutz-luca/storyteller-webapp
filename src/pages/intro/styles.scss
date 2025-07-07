@@ -122,16 +122,20 @@
 
         .ready-text {
             margin-right: 12px;
-                h2 {
-                    font-size: 16px;
-                }
-                p {
-                    font-size: 12px;
-                }
+            h2 {
+                font-size: 16px;
+            }
+            p {
+                font-size: 12px;
+            }
         }
 
         button {
             width: 200px;
+
+            &:hover {
+                padding-left: 2.2em;
+            }
         }
     }
 }

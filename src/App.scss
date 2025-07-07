@@ -28,7 +28,7 @@
 .app-container {
   height: 100vh;
 
-  @media (max-width: 768px) {
+  @media (max-width: 768px) or (max-height: 868px) {
     height: unset;
   }
 }
