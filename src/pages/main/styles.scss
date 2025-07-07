@@ -1,5 +1,14 @@
 .main-page {
+    position: absolute;
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    height: fit-content;
 
     .share-button {
         cursor: pointer;
