@@ -45,9 +45,5 @@ export const useSharedStory = (storyMap?: SharedMap) => {
         }
     }, [initialized])
 
-    useEffect(() => {
-        console.log('[Story]', sharedStory);
-    }, [sharedStory])
-
     return { sharedStory, updateSharedStory }
 }

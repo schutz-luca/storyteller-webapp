@@ -1,3 +1,10 @@
+.motion-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .question {
     display: flex;
     flex-direction: column;
@@ -30,6 +37,10 @@
             outline: none;
             border: 1px #0e90a7 solid;
         }
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
     }
 }
 

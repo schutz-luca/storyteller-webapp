@@ -39,6 +39,7 @@ export const QuestionView = ({ question, onSubmit, answer, setAnswer }: Question
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -100 }}
                 transition={{ duration: 0.5 }}
+                className='motion-question'
             >
                 <form className="question" onSubmit={handleSubmit}>
                     <h2>{question.value} {!question.nullable && <b>*</b>}</h2>

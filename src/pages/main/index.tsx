@@ -12,6 +12,7 @@ import { StoryView } from "../../components/story-view";
 import { formatToMd } from "../../utils/formatToMd";
 import { useSharedLoading } from "../../lib/fluid-framework/useSharedLoading";
 import { SharedMap } from "fluid-framework";
+import { StorytellerBanner } from "../../components/storyteller";
 
 export const MainPage = ({ storyMap, loadingMap, containerId }: { storyMap?: SharedMap; loadingMap?: SharedMap; containerId: string }) => {
     const { sharedStory, updateSharedStory } = useSharedStory(storyMap);
@@ -75,23 +76,26 @@ export const MainPage = ({ storyMap, loadingMap, containerId }: { storyMap?: Sha
     console.log(sharedStory)
 
     return (
-        <div className="main-page">
-            <div className="share-button" title="Compartilhe sua sessão" onClick={shareSession}><FaShareFromSquare /></div>
-            {!sharedStory.story ?
-                // Questions
-                <>
-                    <Stepper currentStep={sharedStory?.currentStep} totalSteps={questions.length} />
-                    <QuestionView
-                        question={questions[sharedStory?.currentStep]}
-                        onSubmit={handleNext}
-                        answer={sharedStory?.currentAnswer}
-                        setAnswer={setAnswer}
-                    />
-                </>
-                :
-                // Story
-                <StoryView story={formatToMd(sharedStory?.story)} recreate={recreate} reset={reset} />
-            }
-        </div>
+        <>
+            <StorytellerBanner />
+            <div className="main-page">
+                <div className="share-button" title="Compartilhe sua sessão" onClick={shareSession}><FaShareFromSquare /></div>
+                {!sharedStory.story ?
+                    // Questions
+                    <>
+                        <Stepper currentStep={sharedStory?.currentStep} totalSteps={questions.length} />
+                        <QuestionView
+                            question={questions[sharedStory?.currentStep]}
+                            onSubmit={handleNext}
+                            answer={sharedStory?.currentAnswer}
+                            setAnswer={setAnswer}
+                        />
+                    </>
+                    :
+                    // Story
+                    <StoryView story={formatToMd(sharedStory?.story)} recreate={recreate} reset={reset} />
+                }
+            </div>
+        </>
     );
 };
