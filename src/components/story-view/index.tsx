@@ -7,8 +7,7 @@ import { FaPlus, FaSync } from 'react-icons/fa';
 export const StoryView = ({ story, recreate, reset }: { story: string; reset: () => void; recreate: () => void }) => {
     return (
         <div className="flex-center">
-
-            <div className="story-container">
+            <div className="story-container glass">
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeSanitize]}

@@ -72,9 +72,7 @@ export const MainPage = ({ storyMap, loadingMap, containerId }: { storyMap?: Sha
 
     if (sharedLoading) return <Loading text={sharedLoading} />
     if (sharedStory?.currentStep === undefined) return <Loading text={'Conectando à sessão...'} />
-
-    console.log(sharedStory)
-
+    
     return (
         <>
             <StorytellerBanner />

@@ -1,4 +1,5 @@
 import "./App.scss";
+import { AnimatedBackground } from "./components/animated-background";
 import { useSharedMaps } from "./lib/fluid-framework/useSharedMaps";
 import { IntroPage } from "./pages/intro";
 import { MainPage } from "./pages/main";
@@ -8,6 +9,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      <AnimatedBackground/>
       <div className="content-container">
         {isNewSession ?
           <IntroPage setIsNewSession={setIsNewSession} />

@@ -41,7 +41,7 @@ export const QuestionView = ({ question, onSubmit, answer, setAnswer }: Question
                 transition={{ duration: 0.5 }}
                 className='motion-question'
             >
-                <form className="question" onSubmit={handleSubmit}>
+                <form className="question glass" onSubmit={handleSubmit}>
                     <h2>{question.value} {!question.nullable && <b>*</b>}</h2>
                     <textarea
                         value={answer}

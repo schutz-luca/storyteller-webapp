@@ -6,7 +6,7 @@ export const IntroPage = ({ setIsNewSession }: { setIsNewSession: React.Dispatch
     const start = () => setIsNewSession(false);
 
     return (
-        <div className='intro-page'>
+        <div className='intro-page glass'>
             <div className='title-bg'>
                 <p className='subtitle'>Crie novas histórias com</p>
                 <Logo />
