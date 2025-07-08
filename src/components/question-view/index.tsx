@@ -4,15 +4,16 @@ import { QuestionViewProps } from "./types";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Carousel } from "../carousel";
 import { IoPlaySkipForward, IoSparkles } from "react-icons/io5";
-import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronRight, FaShareFromSquare } from "react-icons/fa6";
 import { FluidContext } from "../../context/fluid-context";
 import { questions } from "../../constants/questions";
+import { Stepper } from "../stepper";
 
 export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
     const {
         sharedStory,
-        updateSharedStory
-
+        updateSharedStory,
+        containerId
     } = useContext(FluidContext);
     const [localAnswer, setLocalAnser] = useState('');
 
@@ -38,6 +39,12 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
         onSubmit({ ...question, answer: answer.trim() });
     };
 
+    const shareSession = () => {
+        const shareUrl = `${window.location.origin}/?session=${containerId}`
+        navigator.clipboard.writeText(shareUrl);
+        alert('Link de compartilhamento foi copiado')
+    }
+
     useEffect(() => {
         setAnswer(localAnswer)
     }, [localAnswer]);
@@ -53,6 +60,8 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
                 className='motion-question'
             >
                 <form className="question glass" onSubmit={handleSubmit}>
+                    <div className="share-button" title="Compartilhe sua sessão" onClick={shareSession}><FaShareFromSquare /></div>
+                    <Stepper currentStep={sharedStory?.currentStep || 0} totalSteps={questions.length} />
                     <h2>{question.value} {!question.nullable && <b>*</b>}</h2>
                     <textarea
                         value={answer}

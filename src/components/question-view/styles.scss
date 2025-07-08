@@ -6,9 +6,9 @@
     justify-content: center;
 }
 
-.question-header{
+.question-header {
     display: flex;
-    gap: 20px
+    gap: 20px;
 }
 
 .question {
@@ -19,9 +19,24 @@
     padding: 20px;
     border-radius: 20px;
     width: 800px;
-    height: 460px;
     z-index: 1;
     margin: 0 10px;
+
+    .share-button {
+        cursor: pointer;
+        font-size: 22px;
+        position: absolute;
+        right: -12px;
+        top: -12px;
+        border-radius: 50%;
+        background: #0e90a7;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
 
     input {
         width: 100%;
@@ -35,6 +50,7 @@
         border: 1px transparent solid;
         padding: 10px 20px;
         width: 80%;
+        max-width: 80%;
         border-radius: 8px;
         background: #3a3a3a93;
         transition: border-color 0.3s ease;
@@ -48,7 +64,8 @@
     }
 
     @media (max-width: 768px) {
-        width: 100%;
+        width: 80%;
+        max-width: 80%;
     }
 }
 

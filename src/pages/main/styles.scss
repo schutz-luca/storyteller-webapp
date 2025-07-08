@@ -1,22 +1,11 @@
 .main-page {
-    position: absolute;
-    top: 90px;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: flex-start;
     align-items: center;
-    margin-top: 20px;
-    height: fit-content;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
 
-    .share-button {
-        cursor: pointer;
-        margin-bottom: 10px;
-        font-size: 25px;
-    }
-
-    .buttons-container{
+    .buttons-container {
         margin-bottom: 10px;
     }
 
@@ -26,8 +15,13 @@
         z-index: -1;
         margin-top: 40px;
 
-        &:hover{
+        &:hover {
             opacity: 1;
         }
+    }
+
+    @media (max-width: 768px) or (max-height: 868px) {
+        position: unset;
+        margin-top: 110px;
     }
 }

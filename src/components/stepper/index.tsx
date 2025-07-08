@@ -3,6 +3,6 @@ import "./styles.scss";
 
 export const Stepper = ({ currentStep, totalSteps }: StepperProps) => (
   <div className="stepper">
-    <span>{`${currentStep + 1}/${totalSteps}`}</span>
+    <span>Questão {`${currentStep + 1} de ${totalSteps}`}</span>
   </div>
 );
