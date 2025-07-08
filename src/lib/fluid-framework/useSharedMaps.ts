@@ -20,7 +20,7 @@ const containerSchema = {
 export const useSharedMaps = () => {
     const [container, setContainer] = useState<IFluidContainer>();
     const [containerId, setContainerId] = useState('');
-    const [isNewSession, setIsNewSession] = useState(false);
+    const [isNewSession, setIsNewSession] = useState(true);
 
     const getSharedMaps = async () => {
         try {

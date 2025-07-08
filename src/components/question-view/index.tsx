@@ -1,13 +1,24 @@
 import { motion, AnimatePresence } from "framer-motion";
 import './styles.scss';
 import { QuestionViewProps } from "./types";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { Carousel } from "../carousel";
 import { IoPlaySkipForward, IoSparkles } from "react-icons/io5";
 import { FaChevronRight } from "react-icons/fa6";
+import { FluidContext } from "../../context/fluid-context";
+import { questions } from "../../constants/questions";
 
-export const QuestionView = ({ question, onSubmit, answer, setAnswer }: QuestionViewProps) => {
+export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
+    const {
+        sharedStory,
+        updateSharedStory
+
+    } = useContext(FluidContext);
     const [localAnswer, setLocalAnser] = useState('');
+
+    const question = sharedStory?.currentStep ? questions[sharedStory.currentStep] : questions[0];
+    const answer = sharedStory?.currentAnswer || '';
+    const setAnswer = (value: string) => updateSharedStory({ currentAnswer: value });
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
@@ -19,7 +30,7 @@ export const QuestionView = ({ question, onSubmit, answer, setAnswer }: Question
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (!answer && !question.nullable) {
+        if (!answer && !question?.nullable) {
             alert('Resposta vazia, por favor preencha o campo');
             return;
         }

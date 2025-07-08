@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import { Logo } from '../../components/storyteller/logo';
 import './styles.scss';
 import { FaHandPointRight } from 'react-icons/fa';
+import { FluidContext } from '../../context/fluid-context';
 
-export const IntroPage = ({ setIsNewSession }: { setIsNewSession: React.Dispatch<React.SetStateAction<boolean>> }) => {
+export const IntroPage = () => {
+    const { setIsNewSession } = useContext(FluidContext);
     const start = () => setIsNewSession(false);
 
     return (

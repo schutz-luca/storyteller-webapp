@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { QuestionView } from "../../components/question-view";
 import { Stepper } from "../../components/stepper";
-import { sharedStoryEmptyState, useSharedStory } from "../../lib/fluid-framework/useSharedStory";
-import { FillableAnswerGroup, Question } from "../../types";
+import { sharedStoryEmptyState } from "../../lib/fluid-framework/useSharedStory";
+import { FillableAnswerGroup, Question } from "../../@types";
 import { unflatObject } from "../../utils/unflatObject";
 import { FaShareFromSquare } from "react-icons/fa6";
 import './styles.scss';
@@ -10,13 +10,17 @@ import { Loading } from "../../components/loading";
 import { questions } from "../../constants/questions";
 import { StoryView } from "../../components/story-view";
 import { formatToMd } from "../../utils/formatToMd";
-import { useSharedLoading } from "../../lib/fluid-framework/useSharedLoading";
-import { SharedMap } from "fluid-framework";
 import { StorytellerBanner } from "../../components/storyteller";
+import { FluidContext } from "../../context/fluid-context";
 
-export const MainPage = ({ storyMap, loadingMap, containerId }: { storyMap?: SharedMap; loadingMap?: SharedMap; containerId: string }) => {
-    const { sharedStory, updateSharedStory } = useSharedStory(storyMap);
-    const { sharedLoading, updateSharedLoading } = useSharedLoading(loadingMap);
+export const MainPage = () => {
+    const {
+        containerId,
+        sharedStory,
+        updateSharedStory,
+        sharedLoading,
+        updateSharedLoading
+    } = useContext(FluidContext);
 
     const [answers, setAnswers] = useState<FillableAnswerGroup>();
 
@@ -70,9 +74,8 @@ export const MainPage = ({ storyMap, loadingMap, containerId }: { storyMap?: Sha
         updateSharedStory({ answers });
     }, [answers])
 
-    if (sharedLoading) return <Loading text={sharedLoading} />
     if (sharedStory?.currentStep === undefined) return <Loading text={'Conectando à sessão...'} />
-    
+
     return (
         <>
             <StorytellerBanner />
@@ -82,12 +85,7 @@ export const MainPage = ({ storyMap, loadingMap, containerId }: { storyMap?: Sha
                     // Questions
                     <>
                         <Stepper currentStep={sharedStory?.currentStep} totalSteps={questions.length} />
-                        <QuestionView
-                            question={questions[sharedStory?.currentStep]}
-                            onSubmit={handleNext}
-                            answer={sharedStory?.currentAnswer}
-                            setAnswer={setAnswer}
-                        />
+                        <QuestionView onSubmit={handleNext} />
                     </>
                     :
                     // Story
