@@ -15,6 +15,7 @@ export const MainPage = () => {
     const {
         sharedStory,
         updateSharedStory,
+        sharedLoading,
         updateSharedLoading
     } = useContext(FluidContext);
 
@@ -63,6 +64,8 @@ export const MainPage = () => {
     }, [answers])
 
     if (sharedStory?.currentStep === undefined) return <Loading text={'Conectando à sessão...'} />
+    console.log(sharedLoading)
+    if (sharedLoading) return <Loading text={sharedLoading} />
 
     return (
         <>
