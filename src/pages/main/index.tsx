@@ -59,7 +59,7 @@ export const MainPage = () => {
     };
 
     useEffect(() => {
-        updateSharedStory({ answers });
+        if (answers) updateSharedStory({ answers });
     }, [answers])
 
     if (sharedStory?.currentStep === undefined) return <Loading text={'Conectando à sessão...'} />
