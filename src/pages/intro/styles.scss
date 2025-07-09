@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .intro-page {
     display: flex;
     flex-direction: column;
@@ -16,6 +18,7 @@
         align-items: center;
         flex-direction: column;
         background: #a4cbec10;
+        background: $secondaryGradient;
         height: 130px;
         width: 100%;
         top: 0;
@@ -83,18 +86,15 @@
     }
 
     button {
-        font-size: 22px;
-        background: #2a5272;
-        background: linear-gradient(105deg, #0d3a5f 0%, #2a5272 100%);
         bottom: 20px;
-        border-radius: 10px 0 0 10px;
+
+        font-size: 22px;
         width: 400px;
-        display: flex;
+        border-radius: 10px 0 0 10px;
         justify-content: flex-start;
         transition: all ease-in-out 0.5s;
 
         &:hover {
-            filter: brightness(1.1);
             padding-left: 10em;
         }
 
