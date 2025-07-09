@@ -14,11 +14,10 @@ export const StoryView = ({ story, recreate, reset }: { story: string; reset: ()
                 >
                     {story}
                 </ReactMarkdown>
-            </div>
-
-            <div className="buttons-container">
-                <button onClick={reset}>Criar outra história <FaPlus /></button>
-                <button onClick={recreate}>Recriar <FaSync /></button>
+                <div className="buttons-container">
+                    <button onClick={reset}>Criar outra história <FaPlus /></button>
+                    <button onClick={recreate}>Recriar <FaSync /></button>
+                </div>
             </div>
         </div>
     )

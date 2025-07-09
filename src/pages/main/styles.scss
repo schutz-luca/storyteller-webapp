@@ -1,9 +1,11 @@
 .main-page {
-    display: flex;
+    // display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     width: 100%;
+    height: calc(100% - 90px);
+    top: 90px;
 
     .buttons-container {
         margin-bottom: 10px;
@@ -20,7 +22,7 @@
         }
     }
 
-    @media (max-width: 768px) or (max-height: 868px) {
+    @media (max-width: 768px) or (max-height: 788px) {
         position: unset;
         margin-top: 110px;
     }

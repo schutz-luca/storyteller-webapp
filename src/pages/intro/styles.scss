@@ -10,6 +10,7 @@
     border-radius: 30px;
     position: relative;
     overflow: hidden;
+    margin: 20px;
 
     .title-bg {
         position: absolute;
@@ -115,10 +116,10 @@
 
     @media (max-width: 768px) {
         border-radius: 0;
+        margin: 0;
         display: block;
         height: 100%;
         padding: 130px 20px 100px 20px;
-
         .ready-text {
             margin-right: 12px;
             h2 {

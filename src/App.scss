@@ -7,7 +7,12 @@
 
 .buttons-container {
   display: flex;
+  justify-content: center;
   gap: 1rem;
+
+  @media (max-width: 768px) or (max-height: 788px) {
+    flex-direction: column;
+  }
 }
 
 .flex-center {
@@ -28,7 +33,7 @@
 .app-container {
   height: 100vh;
 
-  @media (max-width: 768px) or (max-height: 868px) {
+  @media (max-width: 768px) or (max-height: 788px) {
     height: unset;
   }
 }
