@@ -34,8 +34,8 @@ export const IntroPage = () => {
                 💡 Ou se você é apenas uma pessoa que gosta de <b>explorar novas histórias e narrativas</b>, o Storyteller também pra você!
             </p>
 
-            <h2>Fique atento às dicas!</h2>
-            <p>Sempre a baixo das perguntas terão dicas que darão um caminho para você pensar na resposta.</p>
+            <h2>Fique atento aos exemplos!</h2>
+            <p>Sempre a baixo das perguntas terão exemplos que darão um caminho para você entender o objetivo da pergunta.</p>
 
             <div className='action-bg'>
                 <div className='ready-text'>
