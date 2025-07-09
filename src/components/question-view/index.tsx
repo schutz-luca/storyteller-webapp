@@ -67,9 +67,10 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
                         value={answer}
                         id={question.id}
                         onChange={(e) => setLocalAnser(e.target.value)}
-                        placeholder="Digite sua resposta"
+                        placeholder="Digite sua resposta..."
                         autoFocus={true}
                         onKeyDown={handleKeyDown}
+                        className="glass"
                     />
                     <div className="tips-container">
                         <p>

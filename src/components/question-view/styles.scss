@@ -35,7 +35,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
 
     input {
@@ -47,19 +46,32 @@
     }
 
     textarea {
-        border: 1px transparent solid;
         padding: 10px 20px;
         width: 80%;
         max-width: 80%;
         border-radius: 8px;
-        background: #3a3a3a93;
-        transition: border-color 0.3s ease;
-        outline: none;
         font-size: 16px;
 
-        &:focus {
-            outline: none;
-            border: 1px #0e90a7 solid;
+        /* Light border-bottom */
+        border-bottom: 1px solid transparent;
+        border-image-source: linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 10%,
+            rgba(255, 255, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0.05) 90%,
+            transparent 100%
+        );
+        border-image-slice: 1;
+        border-image-repeat: stretch;
+        border-top: none;
+        font-size: 14px;
+        color: white;
+        position: relative;
+
+        &::placeholder{
+            font-family: "Red Hat Display", sans-serif;
+            font-weight: 600;
         }
     }
 
@@ -72,6 +84,7 @@
 .tips-container {
     display: flex;
     flex-direction: column;
+    margin: 10px 0;
 
     p {
         font-size: 15px;
@@ -81,6 +94,8 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
+        margin: 0;
+        margin-top: 20px;
         svg {
             font-size: 20px;
         }

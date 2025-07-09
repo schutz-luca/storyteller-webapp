@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -29,10 +29,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-body {
-  font-family: "Red Hat Display", sans-serif;
 }
 
 h1 {
@@ -87,5 +83,5 @@ button:focus-visible {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid #ffffff15;
-  background: linear-gradient(110deg, #191f2740 0%, #40454d20 80%,  #70737720 100%);
+  background: linear-gradient(110deg, #191f2740 0%, #40454d20 80%, #70737720 100%);
 }
