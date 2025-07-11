@@ -5,11 +5,12 @@ import { FillableAnswerGroup, Question } from "../../@types";
 import { unflatObject } from "../../utils/unflatObject";
 import './styles.scss';
 import { Loading } from "../../components/loading";
-import { questions } from "../../constants/questions";
 import { StoryView } from "../../components/story-view";
 import { formatToMd } from "../../utils/formatToMd";
 import { StorytellerBanner } from "../../components/storyteller";
 import { FluidContext } from "../../context/fluid-context";
+import { useQuestions } from "../../hooks/useQuestions";
+import { useTranslation } from "react-i18next";
 
 export const MainPage = () => {
     const {
@@ -20,6 +21,9 @@ export const MainPage = () => {
     } = useContext(FluidContext);
 
     const [answers, setAnswers] = useState<FillableAnswerGroup>();
+
+    const questions = useQuestions();
+    const { t } = useTranslation();
 
     const reset = () => updateSharedStory(sharedStoryEmptyState);
 
@@ -39,7 +43,7 @@ export const MainPage = () => {
 
     const submitAnswers = async (answers?: FillableAnswerGroup) => {
         try {
-            updateSharedLoading('Criando sua história...');
+            updateSharedLoading(t("storyLoading"));
 
             const response = await fetch(`${import.meta.env.VITE_API_URL}/create-story`, {
                 method: "POST",

@@ -6,8 +6,10 @@ import { Carousel } from "../carousel";
 import { IoPlaySkipForward, IoSparkles } from "react-icons/io5";
 import { FaChevronRight, FaShareFromSquare } from "react-icons/fa6";
 import { FluidContext } from "../../context/fluid-context";
-import { questions } from "../../constants/questions";
 import { Stepper } from "../stepper";
+import { useQuestions } from "../../hooks/useQuestions";
+import { useTranslation } from "react-i18next";
+import { Translation } from "../translation";
 
 export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
     const {
@@ -16,6 +18,9 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
         containerId
     } = useContext(FluidContext);
     const [localAnswer, setLocalAnser] = useState('');
+
+    const questions = useQuestions();
+    const { t } = useTranslation();
 
     const question = sharedStory?.currentStep ? questions[sharedStory.currentStep] : questions[0];
     const answer = sharedStory?.currentAnswer || '';
@@ -32,7 +37,7 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
         event.preventDefault();
 
         if (!answer && !question?.nullable) {
-            alert('Resposta vazia, por favor preencha o campo');
+            alert(t("questionEmptyAnswer"));
             return;
         }
 
@@ -42,7 +47,7 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
     const shareSession = () => {
         const shareUrl = `${window.location.origin}/?session=${containerId}`
         navigator.clipboard.writeText(shareUrl);
-        alert('Link de compartilhamento foi copiado')
+        alert(t("sessionCopy"))
     }
 
     useEffect(() => {
@@ -60,31 +65,40 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
                 className='motion-question'
             >
                 <form className="question glass" onSubmit={handleSubmit}>
-                    <div className="share-button" title="Compartilhe sua sessão" onClick={shareSession}><FaShareFromSquare /></div>
+                    <div className="share-button" title={t("sessionShare")} onClick={shareSession}><FaShareFromSquare /></div>
                     <Stepper currentStep={sharedStory?.currentStep || 0} totalSteps={questions.length} />
                     <h2>{question.value} {!question.nullable && <b>*</b>}</h2>
                     <textarea
                         value={answer}
                         id={question.id}
                         onChange={(e) => setLocalAnser(e.target.value)}
-                        placeholder="Digite sua resposta..."
+                        placeholder={t("questionPlaceholder")}
                         autoFocus={true}
                         onKeyDown={handleKeyDown}
                         className="glass"
                     />
                     <div className="tips-container">
                         <p>
-                            Aqui estão alguns exemplos de repostas <IoSparkles />
+                            <Translation id="questionExamplesLabel" />
+                            <IoSparkles />
                         </p>
                         <Carousel
-                            items={question.tips.map(tip => <span className="tip">{tip}</span>)}
+                            items={question.tips.map(tip =>
+                                <span className="tip">{tip}</span>
+                            )}
                         />
                     </div>
                     <div className="buttons-container">
                         {question.nullable &&
-                            <button>Não responder <IoPlaySkipForward /></button>
+                            <button>
+                                <Translation id="questionSkip" />
+                                <IoPlaySkipForward />
+                            </button>
                         }
-                        <button>Próximo <FaChevronRight /></button>
+                        <button>
+                            <Translation id="questionNext" />
+                            <FaChevronRight />
+                        </button>
                     </div>
                 </form>
 
