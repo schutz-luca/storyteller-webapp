@@ -1,11 +1,39 @@
 .story-container {
-    background: #131115;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border-radius: 1rem;
     margin: 1rem 0;
-    width: 90%;
-    font-family: monospace;
+    width: 60%;
     font-size: 1rem;
+
+    h1 {
+        font-size: 40px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ffffff60;
+    }
+    h2 {
+        font-size: 35px;
+    }
+    h3 {
+        font-size: 30px;
+    }
+
+    h2,
+    h3 {
+        padding-top: 10px;
+        color: #ffffffcc;
+        border-top: 1px solid #ffffff20;
+    }
+    p,
+    li {
+        font-size: 20px;
+        text-align: justify;
+        color: #ffffffbb;
+
+        b,
+        strong {
+            color: #ffffffcc;
+        }
+    }
 
     & > * {
         line-break: normal;
@@ -15,6 +43,9 @@
     }
 
     @media (max-width: 768px) {
+        width: 85%;
+        padding: 1rem;
+
         h1 {
             font-size: 40px;
         }

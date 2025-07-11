@@ -1,22 +1,23 @@
+import { useContext } from "react";
 import "./App.scss";
-import { useSharedMaps } from "./lib/fluid-framework/useSharedMaps";
+import { AnimatedBackground } from "./components/animated-background";
+import { FluidContext } from "./context/fluid-context";
 import { IntroPage } from "./pages/intro";
 import { MainPage } from "./pages/main";
+import { LangButton } from "./components/lang-button";
 
 const App = () => {
-  const { storyMap, loadingMap, containerId, isNewSession, setIsNewSession } = useSharedMaps();
+  const { isNewSession } = useContext(FluidContext);
 
   return (
     <div className="app-container">
+      <AnimatedBackground />
+      <LangButton />
       <div className="content-container">
         {isNewSession ?
-          <IntroPage setIsNewSession={setIsNewSession} />
+          <IntroPage />
           :
-          <MainPage
-            storyMap={storyMap}
-            loadingMap={loadingMap}
-            containerId={containerId}
-          />
+          <MainPage />
         }
       </div>
     </div>
