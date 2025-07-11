@@ -23,7 +23,7 @@ export const MainPage = () => {
     const [answers, setAnswers] = useState<FillableAnswerGroup>();
 
     const questions = useQuestions();
-    const { t } = useTranslation();
+    const { t, i18n: { language } } = useTranslation();
 
     const reset = () => updateSharedStory(sharedStoryEmptyState);
 
@@ -45,7 +45,7 @@ export const MainPage = () => {
         try {
             updateSharedLoading(t("storyLoading"));
 
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/create-story`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/create-story?lang=${language}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(unflatObject(answers)),
