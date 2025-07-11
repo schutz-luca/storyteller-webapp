@@ -2,11 +2,10 @@
 
 .lang-button {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    opacity: 0.8;
+    right: 25px;
+    top: 25px;
+    opacity: 0.4;
     transition: all ease-out 0.3s;
-    // padding: 10px;
     z-index: 10;
 
     button {
@@ -46,6 +45,24 @@
             &:hover {
                 color: $primaryColor;
                 padding-right: 10px;
+            }
+        }
+    }
+
+    @media (max-width: 580px) {
+        right: 10px;
+
+        .lang-options {
+            right: 18px;
+            top: 45px;
+            font-size: 20px;
+            background: #030a18dd;
+            padding: 10px 15px;
+            border-radius: 10px 0 10px 10px;
+            box-shadow: 0 8px 50px rgba(0, 0, 0, 0.8);
+
+            span:hover {
+                padding-right: 0;
             }
         }
     }
