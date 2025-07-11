@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import brLogo from "../../assets/flags/br.svg"
 import usFlag from "../../assets/flags/us.svg"
