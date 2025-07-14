@@ -1,6 +1,6 @@
-import { SharedMap } from "fluid-framework";
-import { useCallback, useEffect, useState } from "react";
-import { getSearchParams } from "../../utils/getSearchParams";
+import { SharedMap } from 'fluid-framework';
+import { useCallback, useEffect, useState } from 'react';
+import { getSearchParams } from '../../utils/getSearchParams';
 
 const loadingKey = 'loading';
 
@@ -13,7 +13,7 @@ export const useSharedLoading = (loadingMap?: SharedMap) => {
     const updateSharedLoading = (value: string) => {
         loadingMap?.set(loadingKey, { message: value });
         setSharedLoading({ message: value });
-    }
+    };
 
     const refresh = useCallback(() => {
         if (!loadingMap) return;
@@ -34,7 +34,7 @@ export const useSharedLoading = (loadingMap?: SharedMap) => {
 
     useEffect(() => {
         console.log('[Loading]', sharedLoading);
-    }, [sharedLoading.message])
+    }, [sharedLoading.message]);
 
-    return { sharedLoading: sharedLoading.message, updateSharedLoading }
-}
+    return { sharedLoading: sharedLoading.message, updateSharedLoading };
+};

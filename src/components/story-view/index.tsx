@@ -1,9 +1,9 @@
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from "remark-gfm";
-import rehypeSanitize from "rehype-sanitize";
-import './styles..scss';
 import { FaPlus, FaSync } from 'react-icons/fa';
+import ReactMarkdown from 'react-markdown';
+import rehypeSanitize from 'rehype-sanitize';
+import remarkGfm from 'remark-gfm';
 import { Translation } from '../translation';
+import './styles..scss';
 
 export const StoryView = ({ story, recreate, reset }: { story: string; reset: () => void; recreate: () => void }) => {
     return (
@@ -27,5 +27,5 @@ export const StoryView = ({ story, recreate, reset }: { story: string; reset: ()
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

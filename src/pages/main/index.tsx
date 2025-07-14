@@ -1,16 +1,16 @@
-import { useState, useEffect, useContext } from "react";
-import { QuestionView } from "../../components/question-view";
-import { sharedStoryEmptyState } from "../../lib/fluid-framework/useSharedStory";
-import { FillableAnswerGroup, Question } from "../../@types";
-import { unflatObject } from "../../utils/unflatObject";
+import { useState, useEffect, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FillableAnswerGroup, Question } from '../../@types';
+import { Loading } from '../../components/loading';
+import { QuestionView } from '../../components/question-view';
+import { StoryView } from '../../components/story-view';
+import { StorytellerBanner } from '../../components/storyteller';
+import { FluidContext } from '../../context/fluid-context';
+import { useQuestions } from '../../hooks/useQuestions';
+import { sharedStoryEmptyState } from '../../lib/fluid-framework/useSharedStory';
+import { formatToMd } from '../../utils/formatToMd';
+import { unflatObject } from '../../utils/unflatObject';
 import './styles.scss';
-import { Loading } from "../../components/loading";
-import { StoryView } from "../../components/story-view";
-import { formatToMd } from "../../utils/formatToMd";
-import { StorytellerBanner } from "../../components/storyteller";
-import { FluidContext } from "../../context/fluid-context";
-import { useQuestions } from "../../hooks/useQuestions";
-import { useTranslation } from "react-i18next";
 
 export const MainPage = () => {
     const {
@@ -38,16 +38,16 @@ export const MainPage = () => {
     };
 
     const recreate = () => {
-        submitAnswers(sharedStory?.answers)
-    }
+        submitAnswers(sharedStory?.answers);
+    };
 
     const submitAnswers = async (answers?: FillableAnswerGroup) => {
         try {
-            updateSharedLoading(t("storyLoading"));
+            updateSharedLoading(t('storyLoading'));
 
             const response = await fetch(`${import.meta.env.VITE_API_URL}/create-story?lang=${language}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(unflatObject(answers)),
             });
             const data = await response.json();
@@ -58,18 +58,15 @@ export const MainPage = () => {
             console.error('Error sending answers:', error);
             updateSharedLoading('');
         }
-        finally {
-
-        }
     };
 
     useEffect(() => {
         if (answers) updateSharedStory({ answers });
-    }, [answers])
+    }, [answers]);
 
-    if (sharedStory?.currentStep === undefined) return <Loading text={'Conectando à sessão...'} />
-    console.log(sharedLoading)
-    if (sharedLoading) return <Loading text={sharedLoading} />
+    if (sharedStory?.currentStep === undefined) return <Loading text={'Conectando à sessão...'} />;
+    console.log(sharedLoading);
+    if (sharedLoading) return <Loading text={sharedLoading} />;
 
     return (
         <>

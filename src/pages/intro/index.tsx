@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { Logo } from '../../components/storyteller/logo';
-import './styles.scss';
 import { FaHandPointRight } from 'react-icons/fa';
-import { FluidContext } from '../../context/fluid-context';
+import { Logo } from '../../components/storyteller/logo';
 import { Translation } from '../../components/translation';
+import { FluidContext } from '../../context/fluid-context';
+import './styles.scss';
 
 export const IntroPage = () => {
     const { setIsNewSession } = useContext(FluidContext);
@@ -26,5 +26,5 @@ export const IntroPage = () => {
                 </button>
             </div>
         </div>
-    )
-}
+    );
+};

@@ -1,5 +1,5 @@
-import { StateSetter } from "../../@types/common";
-import { SharedStory } from "../../lib/fluid-framework/types";
+import { StateSetter } from '../../@types/common';
+import { SharedStory } from '../../lib/fluid-framework/types';
 
 export interface FluidContextData {
     sharedLoading: string;

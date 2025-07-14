@@ -1,8 +1,8 @@
-import { AzureClient } from "@fluidframework/azure-client";
-import { InsecureTokenProvider } from "@fluidframework/test-client-utils";
-import { IFluidContainer, SharedMap } from "fluid-framework";
-import { useEffect, useState } from "react"
-import { getSearchParams } from "../../utils/getSearchParams";
+import { AzureClient } from '@fluidframework/azure-client';
+import { InsecureTokenProvider } from '@fluidframework/test-client-utils';
+import { IFluidContainer, SharedMap } from 'fluid-framework';
+import { useEffect, useState } from 'react';
+import { getSearchParams } from '../../utils/getSearchParams';
 
 const client = new AzureClient({
     connection: {
@@ -15,7 +15,7 @@ const client = new AzureClient({
 
 const containerSchema = {
     initialObjects: { storyMap: SharedMap, loadingMap: SharedMap }
-}
+};
 
 export const useSharedMaps = () => {
     const [container, setContainer] = useState<IFluidContainer>();
@@ -43,7 +43,7 @@ export const useSharedMaps = () => {
         catch (error) {
             console.error('Error on Fluid container connection:', error);
         }
-    }
+    };
 
     useEffect(() => {
         getSharedMaps();
@@ -55,5 +55,5 @@ export const useSharedMaps = () => {
         containerId,
         isNewSession,
         setIsNewSession
-    }
-}
+    };
+};

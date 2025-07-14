@@ -1,4 +1,4 @@
-import { FillableAnswerGroup } from "../../@types";
+import { FillableAnswerGroup } from '../../@types';
 
 export interface SharedStory {
     currentAnswer: string;

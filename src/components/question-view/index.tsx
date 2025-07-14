@@ -1,15 +1,15 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from 'framer-motion';
+import { FormEvent, useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FaChevronRight, FaShareFromSquare } from 'react-icons/fa6';
+import { IoPlaySkipForward, IoSparkles } from 'react-icons/io5';
+import { FluidContext } from '../../context/fluid-context';
+import { useQuestions } from '../../hooks/useQuestions';
+import { Carousel } from '../carousel';
+import { Stepper } from '../stepper';
+import { Translation } from '../translation';
+import { QuestionViewProps } from './types';
 import './styles.scss';
-import { QuestionViewProps } from "./types";
-import { FormEvent, useContext, useEffect, useState } from "react";
-import { Carousel } from "../carousel";
-import { IoPlaySkipForward, IoSparkles } from "react-icons/io5";
-import { FaChevronRight, FaShareFromSquare } from "react-icons/fa6";
-import { FluidContext } from "../../context/fluid-context";
-import { Stepper } from "../stepper";
-import { useQuestions } from "../../hooks/useQuestions";
-import { useTranslation } from "react-i18next";
-import { Translation } from "../translation";
 
 export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
     const {
@@ -27,7 +27,7 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
     const setAnswer = (value: string) => updateSharedStory({ currentAnswer: value });
 
     const handleKeyDown = (e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
+        if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault(); // Prevents a new line in the textarea
             handleSubmit(e);
         }
@@ -37,7 +37,7 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
         event.preventDefault();
 
         if (!answer && !question?.nullable) {
-            alert(t("questionEmptyAnswer"));
+            alert(t('questionEmptyAnswer'));
             return;
         }
 
@@ -45,13 +45,13 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
     };
 
     const shareSession = () => {
-        const shareUrl = `${window.location.origin}/?session=${containerId}`
+        const shareUrl = `${window.location.origin}/?session=${containerId}`;
         navigator.clipboard.writeText(shareUrl);
-        alert(t("sessionCopy"))
-    }
+        alert(t('sessionCopy'));
+    };
 
     useEffect(() => {
-        setAnswer(localAnswer)
+        setAnswer(localAnswer);
     }, [localAnswer]);
 
     return (
@@ -65,14 +65,14 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
                 className='motion-question'
             >
                 <form className="question glass" onSubmit={handleSubmit}>
-                    <div className="share-button" title={t("sessionShare")} onClick={shareSession}><FaShareFromSquare /></div>
+                    <div className="share-button" title={t('sessionShare')} onClick={shareSession}><FaShareFromSquare /></div>
                     <Stepper currentStep={sharedStory?.currentStep || 0} totalSteps={questions.length} />
                     <h2>{question.value} {!question.nullable && <b>*</b>}</h2>
                     <textarea
                         value={answer}
                         id={question.id}
                         onChange={(e) => setLocalAnser(e.target.value)}
-                        placeholder={t("questionPlaceholder")}
+                        placeholder={t('questionPlaceholder')}
                         autoFocus={true}
                         onKeyDown={handleKeyDown}
                         className="glass"

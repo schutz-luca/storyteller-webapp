@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import "./styles.scss";
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import './styles.scss';
 
 export const Carousel = ({ items, timeout = 3000 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);

@@ -18,4 +18,4 @@ export const unflatObject = (flatObject: any) => {
     }
 
     return nestedObject;
-}
+};

@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from "react-i18next";
+import { Trans, useTranslation } from 'react-i18next';
 
 /**
  * Translation component with support to HTML tags using react-i19next
@@ -21,5 +21,5 @@ export const Translation = ({ id, values }: { id: string, values?: any }) => {
                 b: <b />
             }}
         />
-    )
-}
+    );
+};

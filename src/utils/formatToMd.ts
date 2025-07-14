@@ -3,5 +3,5 @@ export const formatToMd = (text: string) => {
     ${text}
     `.split('```markdown')[1] : '';
 
-    return result || text
-}
+    return result || text;
+};
