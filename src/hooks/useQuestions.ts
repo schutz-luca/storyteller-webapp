@@ -6,6 +6,16 @@ export const useQuestions = () => {
 
     const questions: Question[] = [
         {
+            id: "textType", value: t("textTypeQuestion"), tips: [
+                t("textTypeTip1"),
+                t("textTypeTip2"),
+                t("textTypeTip3"),
+                t("textTypeTip4"),
+                t("textTypeTip5"),
+                t("textTypeTip6")
+            ]
+        },
+        {
             id: "goal", value: t("goalQuestion"), tips: [
                 t("goalTip1"),
                 t("goalTip2"),
