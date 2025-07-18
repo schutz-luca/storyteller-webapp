@@ -1,16 +1,13 @@
 <h1 align="center">Storyteller Webapp</h1>
 
-<p align="center">
-<b>Storyteller Webapp</b> is an interactive web application used to create AI based narratives creatively and collaboratively. The app was coded with <b>React.js</b> and generated with <b>Vite</b>.
-<p/>
-
+**Storyteller Webapp** is an interactive web application used to create AI based narratives creatively and collaboratively. The app was coded with **[React](https://react.dev/)** and generated with **[Vite](https://vite.dev/)**.
 
 ## 🚀 Technical Features
-- English and portuguese translations with **i18n**
-- Real-time webhooks architecture with **Fluid Framework**
-- Centralized global states with **Context API**
-- Animated transitions with **Framer Motion**
-- Styled animations with **Lottie**
+- English and portuguese translations with **[i18n](https://www.i18next.com/)**
+- Real-time webhooks architecture with **[Fluid Framework](https://fluidframework.com/)**
+- Centralized global states with **[Context API](https://react.dev/reference/react/createContext)**
+- Animated transitions with **[Framer Motion](https://motion.dev/)**
+- Styled animations with **[Lottie](https://lottiefiles.com/)**
 
 ## 🛠️ Installation and Setup
 
