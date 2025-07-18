@@ -1,9 +1,12 @@
 @import "../../styles/variables";
 
 .banner {
+    &.glass {
+        border: none;
+        border-bottom: 1px solid #ffffff15;
+    }
+
     font-size: 40px;
-    border: none;
-    // border-bottom: 1px solid #7c7c7c20;
     display: flex;
     justify-content: center;
     align-items: center;
