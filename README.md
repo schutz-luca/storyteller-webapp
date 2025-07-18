@@ -27,14 +27,14 @@ Clone this repository to your local machine using:
 git clone https://github.com/schutz-luca/storyteller-webapp.git
 ```
 
-### 3. Navigate to the Project Folder
+### 3. Navigate to the project folder
 Move into the project's directory:
 
 ```bash
 cd storyteller-webapp
 ```
 
-### 4. Install Dependenciese
+### 4. Install dependencies
 Install all required dependencies for the project.
 
 ```bash
@@ -47,14 +47,14 @@ or
 yarn
 ```
 
-### 5. Install Dependencies
-Create a `.env` file in the root directory of the project and configure the necessary variables. Use the provided `.env.example` file as a reference:
+### 5. Create environment file
+Create a `.env` file in the root directory of the project and configure the required variables. Use the provided `.env.example` file as a reference:
 
 ```bash
 cp .env.example .env
 ```
 
-### 6. Start the Development Server
+### 6. Start the development server
 Run the development server to start the application.
 
 ```bash
