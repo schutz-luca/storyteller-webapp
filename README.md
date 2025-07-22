@@ -2,8 +2,11 @@
 
 **Storyteller Webapp** is an interactive web application used to generate AI based narratives creatively and collaboratively. The app was coded with **[React](https://react.dev/)** and generated with **[Vite](https://vite.dev/)**.
 
+Access the project running in production by clicking [here](https://storyteller-webapp.vercel.app/).
+
 ## 🚀 Technical Features
 - English and portuguese translations with **[i18n](https://www.i18next.com/)**
+- Consumes internal API that integrate with **[OpenAI API](https://openai.com/api/)**, using **GPT-4o** model
 - Real-time webhooks architecture with **[Fluid Framework](https://fluidframework.com/)**
 - Centralized global states with **[Context API](https://react.dev/reference/react/createContext)**
 - Animated transitions with **[Framer Motion](https://motion.dev/)**
