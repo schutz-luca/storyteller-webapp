@@ -1,4 +1,4 @@
-<h1 align="center">Storyteller Webapp</h1>
+<h1 align="center"><img src="./src/assets/storyteller-logo.png"/></h1>
 
 **Storyteller Webapp** is an interactive web application used to generate AI based narratives creatively and collaboratively. The app was coded with **[React](https://react.dev/)** and generated with **[Vite](https://vite.dev/)**.
 
