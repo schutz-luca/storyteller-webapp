@@ -75,4 +75,6 @@ To run it properly, you'll also need to run the Storyteller API, but for securit
 
 ## 📄 License
 
-The MIT License (MIT)
+This project is licensed under a **custom MIT-based license**
+
+See [LICENSE](./LICENSE) for full terms.
