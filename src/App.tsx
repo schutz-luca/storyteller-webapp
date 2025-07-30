@@ -1,3 +1,5 @@
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import { useContext } from 'react';
 import { AnimatedBackground } from './components/animated-background';
 import { LangButton } from './components/lang-button';
@@ -20,6 +22,8 @@ const App = () => {
                     <MainPage />
                 }
             </div>
+            <Analytics />
+            <SpeedInsights />
         </div>
     );
 };
