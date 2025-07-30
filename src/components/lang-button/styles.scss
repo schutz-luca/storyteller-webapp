@@ -10,6 +10,10 @@
 
     button {
         padding: 0;
+
+        &:hover {
+            padding: 0;
+        }
     }
 
     .current-lang {
