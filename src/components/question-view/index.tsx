@@ -17,7 +17,7 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
         updateSharedStory,
         containerId
     } = useContext(FluidContext);
-    const [localAnswer, setLocalAnser] = useState('');
+    const [localAnswer, setLocalAnswer] = useState('');
 
     const questions = useQuestions();
     const { t } = useTranslation();
@@ -71,7 +71,7 @@ export const QuestionView = ({ onSubmit }: QuestionViewProps) => {
                     <textarea
                         value={answer}
                         id={question.id}
-                        onChange={(e) => setLocalAnser(e.target.value)}
+                        onChange={(e) => setLocalAnswer(e.target.value)}
                         placeholder={t('questionPlaceholder')}
                         autoFocus={true}
                         onKeyDown={handleKeyDown}
