@@ -3,7 +3,7 @@ import { StepperProps } from './types';
 import './styles.scss';
 
 export const Stepper = ({ currentStep, totalSteps }: StepperProps) => (
-    <div className="stepper">
+    <div className="stepper" data-testid="stepper">
         <span>
             <Translation
                 id="questionCounter"

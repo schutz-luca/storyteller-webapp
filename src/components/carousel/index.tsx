@@ -14,7 +14,7 @@ export const Carousel = ({ items, timeout = 3000 }) => {
     }, [items.length, timeout]);
 
     return (
-        <div className="carousel-container">
+        <div className="carousel-container" data-testid="carousel">
             <div className="carousel">
                 <AnimatePresence mode="wait">
                     <motion.div
