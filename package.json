@@ -71,7 +71,7 @@
       "./src/setupTests.tsx"
     ],
     "moduleNameMapper": {
-      "^.+\\.scss$": "<rootDir>/src/setupTests.tsx"
+      "\\.(css|scss|svg|png|jpg|jpeg|gif)$": "<rootDir>/src/setupTests.tsx"
     },
     "transform": {
       "^.+\\.(t|j)sx?$": "babel-jest",

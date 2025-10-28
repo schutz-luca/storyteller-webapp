@@ -2,11 +2,13 @@ import '@testing-library/jest-dom';
 import { createContext } from 'react';
 import { useQuestions } from './hooks/useQuestions';
 
+const mockChangeLanguage = jest.fn();
+
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key: string) => key, // returns the key for predictable tests
         i18n: {
-            changeLanguage: jest.fn(),
+            changeLanguage: mockChangeLanguage,
         },
     }),
 }));
