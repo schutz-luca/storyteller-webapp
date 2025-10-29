@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FluidContext } from '../../context/fluid-context';
-import { QuestionView } from '.';
+import { QuestionView } from './index';
 
 describe('QuestionView', () => {
     const onSubmit = jest.fn();

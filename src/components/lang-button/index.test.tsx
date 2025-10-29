@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { LangButton } from '.';
 import { useTranslation } from 'react-i18next';
+import { LangButton } from './index';
 
 describe('LangButton', () => {
 

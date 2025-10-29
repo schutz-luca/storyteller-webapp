@@ -11,6 +11,7 @@ import { sharedStoryEmptyState } from '../../lib/fluid-framework/useSharedStory'
 import { formatToMd } from '../../utils/formatToMd';
 import { unflatObject } from '../../utils/unflatObject';
 import './styles.scss';
+import { envVars } from '../../utils/envVars';
 
 export const MainPage = () => {
     const {
@@ -45,7 +46,7 @@ export const MainPage = () => {
         try {
             updateSharedLoading(t('storyLoading'));
 
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/create-story?lang=${language}`, {
+            const response = await fetch(`${envVars.API_URL}/create-story?lang=${language}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(unflatObject(answers)),

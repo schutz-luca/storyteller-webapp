@@ -1,5 +1,5 @@
 import { render, screen, act } from '@testing-library/react';
-import { Carousel } from '.';
+import { Carousel } from './index';
 
 jest.mock('framer-motion', () => ({
     ...jest.requireActual('framer-motion'),

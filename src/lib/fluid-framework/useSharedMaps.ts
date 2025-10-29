@@ -2,14 +2,15 @@ import { AzureClient } from '@fluidframework/azure-client';
 import { InsecureTokenProvider } from '@fluidframework/test-client-utils';
 import { IFluidContainer, SharedMap } from 'fluid-framework';
 import { useEffect, useState } from 'react';
+import { envVars } from '../../utils/envVars';
 import { getSearchParams } from '../../utils/getSearchParams';
 
 const client = new AzureClient({
     connection: {
         type: 'remote',
-        endpoint: import.meta.env.VITE_FLUID_ENDPOINT,
-        tenantId: import.meta.env.VITE_FLUID_TENANT_ID,
-        tokenProvider: new InsecureTokenProvider(import.meta.env.VITE_FLUID_TOKEN, { id: '' })
+        endpoint: envVars.FLUID_ENDPOINT,
+        tenantId: envVars.FLUID_TENANT_ID,
+        tokenProvider: new InsecureTokenProvider(envVars.FLUID_TOKEN, { id: '' })
     }
 });
 

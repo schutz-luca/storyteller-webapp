@@ -3,7 +3,7 @@ import './styles.scss';
 
 export const Logo = () => (
     <div className='logo'>
-            Storyteller <FaFeatherAlt />
+            Storyteller <FaFeatherAlt data-testid='fa-feather-alt-icon' />
         <span>BETA</span>
     </div>
 );

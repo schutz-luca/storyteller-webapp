@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { StorytellerBanner } from '.';
+import { StorytellerBanner } from './index';
 
 jest.mock('react-icons/fa', () => ({
     FaFeatherAlt: () => <i data-testid="fa-feather-alt" />,

@@ -1,10 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Loading } from '.';
-
-jest.mock('lottie-react', () => ({
-    __esModule: true,
-    default: () => <div data-testid="lottie-mock" />,
-}));
+import { Loading } from './index';
 
 describe('Loading', () => {
     it('should render correctly with the given text', () => {

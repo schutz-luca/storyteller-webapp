@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Stepper } from '.';
+import { Stepper } from './index';
 
 describe('Stepper', () => {
     it('should render correctly', () => {

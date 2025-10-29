@@ -1,13 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { StoryView } from '.';
-
-jest.mock('react-markdown', () => ({
-    __esModule: true,
-    default: ({ children }) => <div>{children}</div>,
-}));
-
-jest.mock('rehype-sanitize', () => ({}));
-jest.mock('remark-gfm', () => ({}));
+import { StoryView } from './index';
 
 jest.mock('react-icons/fa', () => ({
     FaPlus: () => <i data-testid="fa-plus" />,

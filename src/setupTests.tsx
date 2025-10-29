@@ -19,17 +19,40 @@ jest.mock('./components/translation', () => ({
 
 jest.mock('./hooks/useQuestions');
 
-const mockedQuestions = [
+jest.mock('./utils/envVars', () => ({
+    envVars: {
+        API_URL: 'http://localhost:3000/api',
+        FLUID_TENANT_ID: 'test-tenant-id',
+        FLUID_TOKEN: 'test-token',
+        FLUID_ENDPOINT: 'https://test-fluid-endpoint',
+    },
+}));
+
+const mockQuestions = [
     { id: '1', value: 'Question 1', nullable: false, tips: ['Tip 1'] },
     { id: '2', value: 'Question 2', nullable: true, tips: ['Tip 2'] },
 ];
-(useQuestions as jest.Mock).mockReturnValue(mockedQuestions);
+(useQuestions as jest.Mock).mockReturnValue(mockQuestions);
 
-const mockedFluidContext = createContext({});
+const mockFluidContext = createContext({});
 
 jest.mock('./context/fluid-context', () => ({
-    FluidContext: mockedFluidContext
+    FluidContext: mockFluidContext
 }));
+
+jest.mock('lottie-react', () => ({
+    __esModule: true,
+    default: () => <div data-testid="lottie-mock" />,
+}));
+
+jest.mock('react-markdown', () => ({
+    __esModule: true,
+    default: ({ children }) => <div>{children}</div>,
+}));
+
+jest.mock('rehype-sanitize', () => ({}));
+
+jest.mock('remark-gfm', () => ({}));
 
 beforeEach(() => {
     jest.clearAllMocks();

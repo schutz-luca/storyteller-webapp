@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Translation } from '.';
+import { Translation } from './index';
 
 jest.unmock('./index');
 
