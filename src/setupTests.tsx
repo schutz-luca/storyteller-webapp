@@ -4,6 +4,14 @@ import { useQuestions } from './hooks/useQuestions';
 
 const mockChangeLanguage = jest.fn();
 
+jest.mock('@vercel/analytics/react', () => ({
+    Analytics: () => null,
+}));
+
+jest.mock('@vercel/speed-insights/react', () => ({
+    SpeedInsights: () => null,
+}));
+
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key: string) => key, // returns the key for predictable tests
