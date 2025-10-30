@@ -39,6 +39,8 @@ export default tseslint.config(
       'indent': ['error', 4],
       '@typescript-eslint/no-explicit-any': 'off',
       'no-unused-vars': 'warn',
+      'no-undef': 'off',
+      'import/no-unresolved': 'off',
 
       'react-hooks/exhaustive-deps': 'off',
       'react-refresh/only-export-components': [
