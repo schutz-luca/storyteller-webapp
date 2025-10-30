@@ -11,6 +11,8 @@ Access the project running in production by clicking [here](https://storyteller-
 - Centralized global states with **[Context API](https://react.dev/reference/react/createContext)**
 - Animated transitions with **[Framer Motion](https://motion.dev/)**
 - Styled animations with **[Lottie](https://lottiefiles.com/)**
+- Unit and Integration tests with **[Jest](https://jestjs.io/)**
+- End-to-end tests with **[Playwright](https://playwright.dev/)**
 
 ## 🛠️ Installation and Setup
 
