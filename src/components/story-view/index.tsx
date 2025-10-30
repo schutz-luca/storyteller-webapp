@@ -7,7 +7,7 @@ import './styles..scss';
 
 export const StoryView = ({ story, recreate, reset }: { story: string; reset: () => void; recreate: () => void }) => {
     return (
-        <div className="flex-center">
+        <div className="flex-center" data-testid="story-content">
             <div className="story-container glass">
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}

@@ -8,10 +8,10 @@ import { StorytellerBanner } from '../../components/storyteller';
 import { FluidContext } from '../../context/fluid-context';
 import { useQuestions } from '../../hooks/useQuestions';
 import { sharedStoryEmptyState } from '../../lib/fluid-framework/useSharedStory';
+import { envVars } from '../../utils/envVars';
 import { formatToMd } from '../../utils/formatToMd';
 import { unflatObject } from '../../utils/unflatObject';
 import './styles.scss';
-import { envVars } from '../../utils/envVars';
 
 export const MainPage = () => {
     const {

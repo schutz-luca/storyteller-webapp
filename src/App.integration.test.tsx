@@ -1,13 +1,13 @@
 
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
+import { StateSetter } from './@types/common';
 import App from './App';
 import { FluidContext } from './context/fluid-context';
 import { FluidContextData } from './context/fluid-context/types';
-import { StateSetter } from './@types/common';
 
 describe('App Integration', () => {
     it('should allow a user to start the process, answer a question, and move to the next step', async () => {
-        let mockContext: FluidContextData = {
+        const mockContext: FluidContextData = {
             sharedLoading: '',
             updateSharedLoading: (value: string) => {
                 mockContext.sharedLoading = value;
